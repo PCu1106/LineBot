@@ -7,27 +7,100 @@ from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from fsm import TocMachine
-from utils import send_text_message
+from utils import send_text_message,send_image_message
 
 load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "state1", "state2"],
+    states=["user", "start", "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan","banana"],
     transitions=[
         {
             "trigger": "advance",
             "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
+            "dest": "start",
+            "conditions": "is_going_to_start",
         },
         {
             "trigger": "advance",
-            "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
+            "source": "start",
+            "dest": "feb",
+            "conditions": "is_going_to_feb",
         },
-        {"trigger": "go_back", "source": ["state1", "state2"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "mar",
+            "conditions": "is_going_to_mar",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "apr",
+            "conditions": "is_going_to_apr",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "may",
+            "conditions": "is_going_to_may",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "jun",
+            "conditions": "is_going_to_jun",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "jul",
+            "conditions": "is_going_to_jul",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "aug",
+            "conditions": "is_going_to_aug",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "sep",
+            "conditions": "is_going_to_sep",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "oct",
+            "conditions": "is_going_to_oct",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "nov",
+            "conditions": "is_going_to_nov",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "dec",
+            "conditions": "is_going_to_dec",
+        },
+        {
+            "trigger": "advance",
+            "source": "start",
+            "dest": "jan",
+            "conditions": "is_going_to_jan",
+        },
+        {
+            "trigger": "advance",
+            "source": [ "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan"],
+            "dest": "banana",
+            "conditions": "is_going_to_banana",
+        },
+        # {"trigger": "go_back", "source": ["start", "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan","banana"], "dest": "user"},
+        {"trigger": "go_back", "source": ["banana"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
@@ -103,7 +176,13 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         if response == False:
-            send_text_message(event.reply_token, "Not Entering any State")
+            if event.message.text == 'fsm':
+                send_image_message(event.reply_token,
+                                   ' https://ccdd-36-237-89-62.ngrok.io/show-fsm')
+
+            else:
+                send_text_message(event.reply_token,
+                                  "輸入'start'來呼叫水果博士!")
 
     return "OK"
 
