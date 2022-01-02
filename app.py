@@ -17,7 +17,7 @@ machine = TocMachine(
     transitions=[
         {
             "trigger": "advance",
-            "source": "user",
+            "source": ["user", "start", "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan"],
             "dest": "start",
             "conditions": "is_going_to_start",
         },
@@ -255,8 +255,7 @@ def webhook_handler():
         if response == False:
             if event.message.text == 'fsm':
                 send_image_message(event.reply_token,
-                                   ' https://drfruit.herokuapp.com/show-fsm')
-
+                                   ' https://89e2-36-237-89-62.ngrok.io/show-fsm')
             else:
                 send_text_message(event.reply_token,
                                   "輸入'start'來呼叫水果博士!")
