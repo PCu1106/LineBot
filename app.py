@@ -13,7 +13,7 @@ load_dotenv()
 
 
 machine = TocMachine(
-    states=["user", "start", "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan","banana"],
+    states=["user", "start", "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan","banana","guava","dragonfruit","passionfruit","mango","watermelon","pineapple","sugarapple","papaya","pomelo","kiwi","waxapple","murcott","orange"],
     transitions=[
         {
             "trigger": "advance",
@@ -99,8 +99,85 @@ machine = TocMachine(
             "dest": "banana",
             "conditions": "is_going_to_banana",
         },
-        # {"trigger": "go_back", "source": ["start", "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan","banana"], "dest": "user"},
-        {"trigger": "go_back", "source": ["banana"], "dest": "user"},
+        {
+            "trigger": "advance",
+            "source": [ "feb", "mar", "apr","may","jun","jul","aug","sep","oct","nov","dec","jan"],
+            "dest": "guava",
+            "conditions": "is_going_to_guava",
+        },
+        {
+            "trigger": "advance",
+            "source": [ "may","jun","jul","aug","sep","oct","nov","dec"],
+            "dest": "dragonfruit",
+            "conditions": "is_going_to_dragonfruit",
+        },
+        {
+            "trigger": "advance",
+            "source": [ "may","jun","jul","aug","sep","oct"],
+            "dest": "passionfruit",
+            "conditions": "is_going_to_passionfruit",
+        },
+        {
+            "trigger": "advance",
+            "source": [ "may","jun","jul","aug"],
+            "dest": "mango",
+            "conditions": "is_going_to_mango",
+        },
+        {
+            "trigger": "advance",
+            "source": [ "may","jun"],
+            "dest": "watermelon",
+            "conditions": "is_going_to_watermelon",
+        },
+        {
+            "trigger": "advance",
+            "source": [ "jun","jul","aug"],
+            "dest": "pineapple",
+            "conditions": "is_going_to_pineapple",
+        },
+        {
+            "trigger": "advance",
+            "source": ["feb","jul","aug","sep","oct","nov","dec","jan"],
+            "dest": "sugarapple",
+            "conditions": "is_going_to_sugarapple",
+        },
+        {
+            "trigger": "advance",
+            "source": ["aug","sep","oct","nov","dec"],
+            "dest": "papaya",
+            "conditions": "is_going_to_papaya",
+        },
+        {
+            "trigger": "advance",
+            "source": ["aug","sep","oct"],
+            "dest": "pomelo",
+            "conditions": "is_going_to_pomelo",
+        },
+        {
+            "trigger": "advance",
+            "source": ["feb", "mar", "apr","sep","oct","nov","dec","jan"],
+            "dest": "kiwi",
+            "conditions": "is_going_to_kiwi",
+        },
+        {
+            "trigger": "advance",
+            "source": ["feb", "mar", "apr","may","jun","jul","nov","dec","jan"],
+            "dest": "waxapple",
+            "conditions": "is_going_to_waxapple",
+        },
+        {
+            "trigger": "advance",
+            "source": ["feb", "mar","nov","dec","jan"],
+            "dest": "murcott",
+            "conditions": "is_going_to_murcott",
+        },
+        {
+            "trigger": "advance",
+            "source": ["nov","dec","jan"],
+            "dest": "orange",
+            "conditions": "is_going_to_orange",
+        },
+        {"trigger": "go_back", "source": ["banana","guava","dragonfruit","passionfruit","mango","watermelon","pineapple","sugarapple","papaya","pomelo","kiwi","waxapple","murcott","orange"], "dest": "user"},
     ],
     initial="user",
     auto_transitions=False,
@@ -178,7 +255,7 @@ def webhook_handler():
         if response == False:
             if event.message.text == 'fsm':
                 send_image_message(event.reply_token,
-                                   ' https://ccdd-36-237-89-62.ngrok.io/show-fsm')
+                                   ' https://drfruit.herokuapp.com/show-fsm')
 
             else:
                 send_text_message(event.reply_token,

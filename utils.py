@@ -888,6 +888,7 @@ def send_fruit_info(reply_token, image_url, nutrition_url, pick_url, preserve_ur
     line_bot_api.reply_message(reply_token, buttons_template)
 
     return "OK"
+
 # def send_feb(reply_token, id):
 #     line_bot_api = LineBotApi(channel_access_token)
 #     buttons_template = TemplateSendMessage(
