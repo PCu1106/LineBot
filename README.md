@@ -1,73 +1,24 @@
-# TOC Project 2020
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/dc7fa47fcd809b99d087/maintainability)](https://codeclimate.com/github/NCKU-CCS/TOC-Project-2020/maintainability)
-
-[![Known Vulnerabilities](https://snyk.io/test/github/NCKU-CCS/TOC-Project-2020/badge.svg)](https://snyk.io/test/github/NCKU-CCS/TOC-Project-2020)
-
-
-Template Code for TOC Project 2020
-
+# Dr. Fruit
 A Line bot based on a finite state machine
 
-More details in the [Slides](https://hackmd.io/@TTW/ToC-2019-Project#) and [FAQ](https://hackmd.io/s/B1Xw7E8kN)
+## 前言
+水果是生活中不可或缺的一部分，既營養又好吃，但上了大學、出了社會後，不再有家人幫你買水果，你該如何選購適合的水果呢？讓Dr. Fruit來教你如何成為水果達人吧
 
-## Setup
+## 系統構想
+第一個目標是希望使用者能知道現在適合選購甚麼水果，因此第一階段先選擇當月水果，因為當水果正值產季，會是最好吃也最便宜的時候
 
-### Prerequisite
-* Python 3.6
-* Pipenv
-* Facebook Page and App
-* HTTPS Server
+第二個目標是希望使用者知道自己適合吃甚麼水果，因此我列出各個水果的營養功效，有提升何種身體機能的介紹，同時也警告哪種人不適合食用該水果
 
-#### Install Dependency
-```sh
-pip3 install pipenv
+第三個目標是希望使用者知道要吃何種水果後，能從一大籃水果中挑出"品質好"的那個，因此各種水果都提供了如何挑選的指南
 
-pipenv --three
+最後的目標是要使用者買回家後，知道水果如何保存，不然前面再努力都是白買，因此每種水果皆有設計保存指南
 
-pipenv install
+## 開發環境
+python 3.9.7
 
-pipenv shell
-```
+win10
 
-* pygraphviz (For visualizing Finite State Machine)
-    * [Setup pygraphviz on Ubuntu](http://www.jianshu.com/p/a3da7ecc5303)
-	* [Note: macOS Install error](https://github.com/pygraphviz/pygraphviz/issues/100)
-
-
-#### Secret Data
-You should generate a `.env` file to set Environment Variables refer to our `.env.sample`.
-`LINE_CHANNEL_SECRET` and `LINE_CHANNEL_ACCESS_TOKEN` **MUST** be set to proper values.
-Otherwise, you might not be able to run your code.
-
-#### Run Locally
-You can either setup https server or using `ngrok` as a proxy.
-
-#### a. Ngrok installation
-* [ macOS, Windows, Linux](https://ngrok.com/download)
-
-or you can use Homebrew (MAC)
-```sh
-brew cask install ngrok
-```
-
-**`ngrok` would be used in the following instruction**
-
-```sh
-ngrok http 8000
-```
-
-After that, `ngrok` would generate a https URL.
-
-#### Run the sever
-
-```sh
-python3 app.py
-```
-
-#### b. Servo
-
-Or You can use [servo](http://serveo.net/) to expose local servers to the internet.
+## 操作示範
 
 
 ## Finite State Machine
